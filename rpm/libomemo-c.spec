@@ -56,17 +56,15 @@ touch .git
 mkdir -p build
 
 pushd build
-
-cmake_opts="-Wno-dev  \
+%cmake .. \
   -DBUILD_TESTING=OFF"
 
-%cmake $cmake_opts 
 %make_build
-
 popd
+
 %install
 pushd build
-make DESTDIR=%{buildroot} install
+%make_install
 popd
 
 %post -p /sbin/ldconfig
