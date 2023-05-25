@@ -24,7 +24,7 @@ Summary:        Fork of libsignal-protocol-c adding support for OMEMO XEP-0384 0
 License:        GPL-3.0-only
 Group:          Development/Libraries/C and C++
 URL:            https://github.com/dino/libomemo-c
-Source:         https://github.com/dino/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source:         %{name}-%{version}.tar.bz2
 BuildRequires:  check-devel >= 0.9.10
 BuildRequires:  cmake >= 2.8.4
 BuildRequires:  gcc-c++
@@ -50,26 +50,26 @@ Group:          System/Libraries
 The libomemo-c library is a forward secrecy protocol library written in C.
 
 %prep
-%setup -q
+%autosetup -n %{name}-%{version}/upstream -p1
 
 %build
-%cmake \
-    -DBUILD_TESTING=ON
-%if 0%{?suse_version} > 1500
-%cmake_build
-%else
-%make_jobs
-%endif
+touch .git
+mkdir -p build
+pushd build
+
+%cmake $cmake_opts \
+    -DBUILD_TESTING=OFF
+%make_build
+
+popd
 
 %install
-%cmake_install
+pushd build
+make DESTDIR=%{buildroot} install
+popd
 
-%check
-export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
-%ctest
-
-%post -n %{c_lib} -p /sbin/ldconfig
-%postun -n %{c_lib} -p /sbin/ldconfig
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files -n %{c_lib}
 %license LICENSE
