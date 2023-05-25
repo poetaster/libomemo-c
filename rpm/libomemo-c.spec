@@ -54,10 +54,9 @@ The libomemo-c library is a forward secrecy protocol library written in C.
 %build
 touch .git
 mkdir -p build
+
 pushd build
 
-%cmake $cmake_opts \
-    -DBUILD_TESTING=OFF
 %make_build
 
 popd
