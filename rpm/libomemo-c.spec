@@ -57,10 +57,13 @@ mkdir -p build
 
 pushd build
 
+cmake_opts="-Wno-dev  \
+  -DBUILD_TESTING=OFF"
+
+%cmake $cmake_opts 
 %make_build
 
 popd
-
 %install
 pushd build
 make DESTDIR=%{buildroot} install
