@@ -57,7 +57,7 @@ mkdir -p build
 
 pushd build
 %cmake .. \
-  -DBUILD_TESTING=OFF"
+  -DBUILD_TESTING=OFF
 
 %make_build
 popd
