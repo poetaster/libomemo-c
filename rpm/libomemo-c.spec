@@ -16,7 +16,7 @@
 #
 
 
-%define c_lib libomemo-c0
+%define c_lib libomemo-c
 Name:           libomemo-c
 Version:        0.5.0
 Release:        4
@@ -73,8 +73,7 @@ popd
 %files -n %{c_lib}
 %license LICENSE
 %doc README.md
-%{_libdir}/libomemo-c.so.0
-%{_libdir}/libomemo-c.so.0.5.0
+%{_libdir}/libomemo*
 
 %files devel
 %dir %{_includedir}/omemo
