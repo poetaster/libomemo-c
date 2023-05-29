@@ -41,13 +41,6 @@ Requires:       %{c_lib} = %{version}
 %description -n libomemo-c-devel
 Development files and headers for libomemo-c
 
-%package -n %{c_lib}
-Summary:        Omemo C Library
-Group:          System/Libraries
-
-%description -n %{c_lib}
-The libomemo-c library is a forward secrecy protocol library written in C.
-
 %prep
 %autosetup -n %{name}-%{version}/upstream -p1
 
