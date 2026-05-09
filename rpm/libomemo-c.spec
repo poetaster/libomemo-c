@@ -18,7 +18,7 @@
 
 %define c_lib libomemo-c
 Name:           libomemo-c
-Version:        0.5.0
+Version:        0.5.1
 Release:        4
 Summary:        Fork of libsignal-protocol-c adding support for OMEMO XEP-0384 0.5.0+
 License:        GPL-3.0-only
