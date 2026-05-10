@@ -1,4 +1,3 @@
-suse#
 # spec file for package libomemo-c
 #
 # Copyright (c) 2023 SUSE LLC
