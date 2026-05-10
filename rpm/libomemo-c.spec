@@ -1,4 +1,4 @@
-#
+suse#
 # spec file for package libomemo-c
 #
 # Copyright (c) 2023 SUSE LLC
@@ -18,13 +18,13 @@
 
 %define c_lib libomemo-c
 Name:           libomemo-c
-Version:        0.5.1
+Version:        0.5.0
 Release:        4
 Summary:        Fork of libsignal-protocol-c adding support for OMEMO XEP-0384 0.5.0+
 License:        GPL-3.0-only
 Group:          Development/Libraries/C and C++
 URL:            https://github.com/dino/libomemo-c
-Source:         %{name}-%{version}.tar.bz2
+Source:         %{name}-%{version}.tar.gz
 BuildRequires:  cmake >= 2.8.4
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig
