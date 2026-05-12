@@ -16,7 +16,7 @@
 #
 
 
-%define c_lib libomemo-c0
+%define c_lib libomemo-c
 Name:           libomemo-c
 Version:        0.5.1
 Release:        0
