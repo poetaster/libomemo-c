@@ -33,6 +33,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(openssl) >= 1.0
 BuildRequires:  protobuf-c-devel
+BuildRequires:  protobuf-c
 
 # testing dependencies
 BuildRequires:  check-devel
