@@ -28,6 +28,7 @@ Source:         https://github.com/dino/%{name}/archive/v%{version}.tar.gz#/%{na
 
 BuildRequires:  check-devel >= 0.9.10
 BuildRequires:  cmake >= 2.8.4
+BuildRequires:  ninja
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(openssl) >= 1.0
@@ -55,13 +56,20 @@ developing applications that use %{name}.
 
 %build
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
 %cmake \
-    -DBUILD_TESTING=OFF
+    -GNinja \
+    -DBUILD_TESTING=ON \
+    -DLIB_INSTALL_DIR=%{_libdir}
 
 %cmake_build
 
 %install
 %cmake_install
+
+%check
+export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
+%ctest
 
 %post -n libomemo-c -p /sbin/ldconfig
 %postun -n libomemo-c -p /sbin/ldconfig
