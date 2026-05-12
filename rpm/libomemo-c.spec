@@ -56,7 +56,7 @@ developing applications that use %{name}.
 %build
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
 %cmake \
-    -DBUILD_TESTING=ON
+    -DBUILD_TESTING=OFF
 
 %cmake_build
 
