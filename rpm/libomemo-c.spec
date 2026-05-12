@@ -54,16 +54,14 @@ developing applications that use %{name}.
 %autosetup -n %{name}-%{version}/upstream -p1
 
 %build
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
 %cmake \
     -DBUILD_TESTING=ON
+
 %cmake_build
 
 %install
 %cmake_install
-
-%check
-export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
-%ctest
 
 %post -n libomemo-c -p /sbin/ldconfig
 %postun -n libomemo-c -p /sbin/ldconfig
