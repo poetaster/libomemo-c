@@ -26,9 +26,11 @@ Group:          Development/Libraries/C and C++
 URL:            https://github.com/dino/libomemo-c
 Source:         https://github.com/dino/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
+BuildRequires:  check-devel >= 0.9.10
+BuildRequires:  cmake >= 2.8.4
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
-BuildRequires:  ninja-build
+BuildRequires:  pkgconfig
+BuildRequires:  pkgconfig(openssl) >= 1.0
 BuildRequires:  protobuf-c-devel
 
 # testing dependencies
