@@ -54,34 +54,30 @@ developing applications that use %{name}.
 %autosetup -n %{name}-%{version}/upstream -p1
 
 %build
-
-# TODO: Please submit an issue to upstream (rhbz#2380740)
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
 %cmake \
-    -GNinja \
-    -DBUILD_TESTING=ON \
-    -DLIB_INSTALL_DIR=%{_libdir}
-
+    -DBUILD_TESTING=ON
 %cmake_build
 
 %install
 %cmake_install
 
 %check
+export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 %ctest
+
+%post -n libomemo-c -p /sbin/ldconfig
+%postun -n libomemo-c -p /sbin/ldconfig
 
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/libomemo*
+%{_libdir}/libomemo-c.so.*
 
 %files devel
 %dir %{_includedir}/omemo
 %{_includedir}/omemo/*.h
 %{_libdir}/libomemo-c.so
 %{_libdir}/pkgconfig/libomemo-c.pc
-
 
 %changelog
 
