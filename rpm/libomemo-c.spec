@@ -53,8 +53,7 @@ export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 %files -n %{c_lib}
 %license LICENSE
 %doc README.md
-%{_libdir}/libomemo-c.so.0
-%{_libdir}/libomemo-c.so.0.5.0
+%{_libdir}/libomemo-c.so.0.*
 
 %files devel
 %dir %{_includedir}/omemo
