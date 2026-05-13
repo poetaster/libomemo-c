@@ -65,7 +65,7 @@ export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 %post -n %{c_lib} -p /sbin/ldconfig
 %postun -n %{c_lib} -p /sbin/ldconfig
 
-%files -n %{c_lib}
+%files 
 %license LICENSE
 %doc README.md
 %{_libdir}/libomemo-c.so.*
