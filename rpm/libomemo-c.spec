@@ -7,6 +7,7 @@ License:        GPL-3.0-only
 Group:          Development/Libraries/C and C++
 URL:            https://github.com/dino/libomemo-c
 Source:         libomemo-c-0.5.0.tar.gz
+
 BuildRequires:  check-devel
 BuildRequires:  cmake >= 2.8.4
 BuildRequires:  gcc-c++
@@ -32,7 +33,7 @@ Group:          System/Libraries
 The libomemo-c library is a forward secrecy protocol library written in C.
 
 %prep
-%setup -q
+%autosetup -p1 -n %{name}-%{version}
 
 %build
 %cmake \
