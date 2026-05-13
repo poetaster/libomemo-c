@@ -36,7 +36,7 @@ BuildRequires:  protobuf-c-devel
 
 # testing dependencies
 BuildRequires:  openssl-devel
-BuildRequires:  check-devel >= 0.9.10
+BuildRequires:  check-devel
 
 %description
 This is a fork of libsignal-protocol-c, an implementation of Signal's ratcheting
