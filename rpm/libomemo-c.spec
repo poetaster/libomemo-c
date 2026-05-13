@@ -47,10 +47,6 @@ Requires:       protobuf-c-devel
 %description -n libomemo-c-devel
 The libomemo-c library is a forward secrecy protocol library written in C.  Development files and headers for libomemo-c
 
-%package -n %{c_lib}
-Summary:        Omemo C Library
-Group:          System/Libraries
-
 %prep
 %autosetup -n %{name}-%{version}/upstream -p1
 
