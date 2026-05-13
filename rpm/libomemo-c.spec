@@ -57,7 +57,7 @@ developing applications that use %{name}.
 
 %build
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
-export CMAKE_LIBRARY_PATH=%{buildroot}%{_libdir}
+export CMAKE_LIBRARY_PATH=%{buildroot}%{_libdir}:%{buildroot}%{_includedir}
 
 %cmake \
     -GNinja \
