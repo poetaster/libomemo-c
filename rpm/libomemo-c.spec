@@ -58,12 +58,12 @@ developing applications that use %{name}.
 %build
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
 export CMAKE_LIBRARY_PATH=%{buildroot}%{_libdir}:%{buildroot}%{_includedir}
+export CMAKE_INCLUDE_PATH=%{buildroot}%{_includedir}
 
 %cmake \
     -GNinja \
     -DBUILD_TESTING=ON \
     -DLIB_INSTALL_DIR=%{_libdir}
-
 %cmake_build
 
 %install
