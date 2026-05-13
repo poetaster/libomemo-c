@@ -38,24 +38,17 @@ BuildRequires:  protobuf-c-devel
 %description
 This is a fork of libsignal-protocol-c, an implementation of Signal's ratcheting forward secrecy protocol that works in synchronous and asynchronous messaging. The fork adds support for OMEMO as defined in XEP-0384 versions 0.3.0 and later.
 
-%package -n libomemo-c-devel
+%package        devel
 Summary:        Development files for libomemo-c
 Group:          Development/Libraries/C and C++
 Requires:       %{c_lib} = %{version}
 Requires:       protobuf-c-devel
 
-%description -n libomemo-c-devel
-Development files and headers for libomemo-c
-
-%package -n %{c_lib}
-Summary:        Omemo C Library
-Group:          System/Libraries
-
-%description -n %{c_lib}
-The libomemo-c library is a forward secrecy protocol library written in C.
+%description    devel
+The libomemo-c library is a forward secrecy protocol library written in C.  Development files and headers for libomemo-c
 
 %prep
-%setup -q
+%autosetup -n %{name}-%{version}/upstream -p1
 
 %build
 %cmake \
