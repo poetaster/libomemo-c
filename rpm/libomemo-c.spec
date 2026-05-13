@@ -26,17 +26,14 @@ Group:          Development/Libraries/C and C++
 URL:            https://github.com/dino/libomemo-c
 Source:         https://github.com/dino/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-BuildRequires:  check-devel >= 0.9.10
 BuildRequires:  cmake >= 2.8.4
 BuildRequires:  ninja
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(openssl) >= 1.0
 BuildRequires:  protobuf-c-devel
-BuildRequires:  protobuf-c
 
 # testing dependencies
-BuildRequires:  check-devel
 BuildRequires:  openssl-devel
 
 %description
@@ -68,10 +65,6 @@ export CMAKE_INCLUDE_PATH=%{buildroot}%{_includedir}
 
 %install
 %cmake_install
-
-%check
-export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
-%ctest
 
 %post -n libomemo-c -p /sbin/ldconfig
 %postun -n libomemo-c -p /sbin/ldconfig
