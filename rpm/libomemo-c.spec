@@ -31,6 +31,7 @@ BuildRequires:  ninja
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(openssl) >= 1.0
+BuildRequires:  protobuf-c
 BuildRequires:  protobuf-c-devel
 
 # testing dependencies
