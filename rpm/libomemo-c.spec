@@ -58,7 +58,6 @@ export CMAKE_POLICY_VERSION_MINIMUM=3.5
 %cmake \
     -GNinja \
     -DBUILD_TESTING=ON \
-    -DLIB_INSTALL_DIR=%{_libdir}
 %cmake_build
 
 %install
