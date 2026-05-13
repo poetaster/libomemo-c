@@ -57,7 +57,8 @@ developing applications that use %{name}.
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
 %cmake \
     -GNinja \
-    -DBUILD_TESTING=ON \
+    -DBUILD_TESTING=ON
+
 %cmake_build
 
 %install
