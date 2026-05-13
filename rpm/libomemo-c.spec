@@ -17,6 +17,7 @@
 
 
 %define c_lib libomemo-c
+
 Name:           libomemo-c
 Version:        0.5.1
 Release:        0
@@ -26,44 +27,39 @@ Group:          Development/Libraries/C and C++
 URL:            https://github.com/dino/libomemo-c
 Source:         https://github.com/dino/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
+BuildRequires:  check-devel 
 BuildRequires:  cmake >= 2.8.4
-BuildRequires:  ninja
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(openssl) >= 1.0
 BuildRequires:  protobuf-c
 BuildRequires:  protobuf-c-devel
 
-# testing dependencies
-BuildRequires:  openssl-devel
-BuildRequires:  check-devel
-
 %description
-This is a fork of libsignal-protocol-c, an implementation of Signal's ratcheting
-forward secrecy protocol that works in synchronous and asynchronous messaging.
-The fork adds support for OMEMO as defined in XEP-0384 versions 0.3.0 and later.
+This is a fork of libsignal-protocol-c, an implementation of Signal's ratcheting forward secrecy protocol that works in synchronous and asynchronous messaging. The fork adds support for OMEMO as defined in XEP-0384 versions 0.3.0 and later.
 
-%package        devel
-Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+%package -n libomemo-c-devel
+Summary:        Development files for libomemo-c
+Group:          Development/Libraries/C and C++
+Requires:       %{c_lib} = %{version}
+Requires:       protobuf-c-devel
 
-%description    devel
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
+%description -n libomemo-c-devel
+Development files and headers for libomemo-c
+
+%package -n %{c_lib}
+Summary:        Omemo C Library
+Group:          System/Libraries
+
+%description -n %{c_lib}
+The libomemo-c library is a forward secrecy protocol library written in C.
 
 %prep
-%autosetup -n %{name}-%{version}/upstream -p1
+%setup -q
 
 %build
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
-export CMAKE_LIBRARY_PATH=%{buildroot}%{_libdir}:%{buildroot}%{_includedir}
-export CMAKE_INCLUDE_PATH=%{buildroot}%{_includedir}
-
 %cmake \
-    -GNinja \
-    -DBUILD_TESTING=ON \
-    -DLIB_INSTALL_DIR=%{_libdir}
-
+    -DBUILD_TESTING=ON
 %cmake_build
 
 %install
@@ -76,7 +72,7 @@ export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 %post -n %{c_lib} -p /sbin/ldconfig
 %postun -n %{c_lib} -p /sbin/ldconfig
 
-%files
+%files -n %{c_lib}
 %license LICENSE
 %doc README.md
 %{_libdir}/libomemo-c.so.*
