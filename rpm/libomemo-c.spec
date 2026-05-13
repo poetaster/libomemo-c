@@ -63,13 +63,14 @@ export CMAKE_INCLUDE_PATH=%{buildroot}%{_includedir}
     -GNinja \
     -DBUILD_TESTING=ON \
     -DLIB_INSTALL_DIR=%{_libdir}
+
 %cmake_build
 
 %install
 %cmake_install
 
-%post -n libomemo-c -p /sbin/ldconfig
-%postun -n libomemo-c -p /sbin/ldconfig
+%check
+%ctest
 
 %files
 %license LICENSE
