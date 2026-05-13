@@ -27,8 +27,9 @@ Group:          Development/Libraries/C and C++
 URL:            https://github.com/dino/libomemo-c
 Source:         https://github.com/dino/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-BuildRequires:  check-devel 
-BuildRequires:  cmake >= 2.8.4
+BuildRequires:  check-devel
+BuildRequires:  ninja
+BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(openssl) >= 1.0
@@ -36,39 +37,40 @@ BuildRequires:  protobuf-c
 BuildRequires:  protobuf-c-devel
 
 %description
-This is a fork of libsignal-protocol-c, an implementation of Signal's ratcheting forward secrecy protocol that works in synchronous and asynchronous messaging. The fork adds support for OMEMO as defined in XEP-0384 versions 0.3.0 and later.
+This is a fork of libsignal-protocol-c, an implementation of Signal's ratcheting
+forward secrecy protocol that works in synchronous and asynchronous messaging.
+The fork adds support for OMEMO as defined in XEP-0384 versions 0.3.0 and later.
 
-%package -n     libomemo-c-devel
-Summary:        Development files for libomemo-c
-Group:          Development/Libraries/C and C++
-Requires:       %{c_lib} = %{version}
-Requires:       protobuf-c-devel
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description -n libomemo-c-devel
-The libomemo-c library is a forward secrecy protocol library written in C.  Development files and headers for libomemo-c
+%description    devel
+The %{name}-devel package contains libraries and header files for
+developing applications that use %{name}.
 
 %prep
-%autosetup -n %{name}-%{version}/upstream -p1
+%autosetup -p1 -n %{name}-%{version}/upstream 
 
 %build
+# TODO: Please submit an issue to upstream (rhbz#2380740)
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
 %cmake \
-    -DBUILD_TESTING=ON
+    -GNinja \
+    -DBUILD_TESTING=ON \
+    -DLIB_INSTALL_DIR=%{_libdir}
 %cmake_build
 
 %install
 %cmake_install
 
 %check
-export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 %ctest
 
-%post -n %{c_lib} -p /sbin/ldconfig
-%postun -n %{c_lib} -p /sbin/ldconfig
-
-%files -n %{c_lib}
+%files
 %license LICENSE
 %doc README.md
-%{_libdir}/libomemo-c.so.*
+%{_libdir}/libomemo-c.so.0*
 
 %files devel
 %dir %{_includedir}/omemo
