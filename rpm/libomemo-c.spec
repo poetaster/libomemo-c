@@ -6,7 +6,7 @@ Summary:        Fork of libsignal-protocol-c adding support for OMEMO XEP-0384 0
 License:        GPL-3.0-only
 Group:          Development/Libraries/C and C++
 URL:            https://github.com/dino/libomemo-c
-Source:         libomemo-c-0.5.0.tar.gz
+Source:         https://github.com/dino/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  check-devel
 BuildRequires:  cmake >= 2.8.4
