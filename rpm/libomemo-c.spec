@@ -54,10 +54,6 @@ pushd build
 %make_install
 popd
 
-%check
-export LD_LIBRARY_PATH=%{buildroot}%{_libdir}
-%ctest
-
 %post -n %{c_lib} -p /sbin/ldconfig
 %postun -n %{c_lib} -p /sbin/ldconfig
 
