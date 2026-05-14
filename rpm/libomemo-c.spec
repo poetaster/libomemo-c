@@ -36,11 +36,12 @@ Group:          System/Libraries
 The libomemo-c library is a forward secrecy protocol library written in C.
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -n %{name}-%{version}/upstream -p1
 
 %build
 %cmake \
     -DBUILD_TESTING=ON
+
 %cmake_build
 
 %install
